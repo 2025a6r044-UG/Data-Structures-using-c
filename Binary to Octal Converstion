@@ -1,0 +1,26 @@
+#include<stdio.h>
+ int BinToDeci(int bin){
+    int deci =0,base=1;
+    while(bin!=0){
+        int rem=bin%10;
+        deci+=rem*base;
+        base*=2;
+        bin/=10;
+    }
+   return deci;
+ }
+ int main(){
+    int num;
+    scanf("%d",&num);
+    int octal=0,place=1;
+    while(num!=0){
+        int rem = num%1000;
+        int d=BinToDeci(rem);
+        octal+=d*place;
+        num/=1000;
+        place=place*10;
+    }
+    printf("%d",octal);
+
+    return 0;
+ }                  
