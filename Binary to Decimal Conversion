@@ -1,0 +1,15 @@
+#include<stdio.h>
+ int main(){
+    int num;
+    printf("Enter number:");
+    scanf("%d",&num);
+    int deci =0,base=1;
+    while(num!=0){
+        int rem=num%10;
+        deci+=rem*base;
+        base*=2;
+        num/=10;
+    }
+    printf("Decimal = %d",deci);
+    return 0;
+ }
