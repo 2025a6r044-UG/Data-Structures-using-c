@@ -1,0 +1,49 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+int OctalToDecimal(int num){
+    int decnum=0,base=1;
+    while(num!=0){
+    int rem=num%10;
+    decnum+=rem*base;
+    base*=8;
+    num/=10;
+    }
+    return decnum;
+}
+char* DecimalToHexa(int num){
+    char *hexa=(char*)calloc(100,sizeof(char));
+    while(num!=0){
+        int rem= num%16;
+        char str[2];
+        if(rem>=0 && rem<=9){
+            sprintf(str,"%d",rem);
+        }
+        else if(rem==10)
+            str[0]='A';
+        else if(rem==11)
+            str[0]='B';
+        else if(rem==12)
+            str[0]='C';
+        else if(rem==13)
+            str[0]='D';
+        else if(rem==14)
+            str[0]='E';
+        else if(rem==15)
+            str[0]='F';
+        str[1]='\0';
+        strcat(hexa,str);
+        num=num/16;
+    }
+    strrev(hexa);
+    return hexa;
+}
+int main(){
+    int num;
+    printf("Enter octal number:");
+    scanf("%d",&num);
+    int dec = OctalToDecimal(num);
+    char *hexa = DecimalToHexa(dec);
+    printf("%s",hexa);
+    return 0;
+}                                                                                                                          
