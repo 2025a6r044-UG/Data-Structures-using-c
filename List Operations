@@ -1,0 +1,90 @@
+//Implement list using array 
+
+#include<stdio.h>
+#define MAX 100
+int list[MAX];
+int n = 0;             // n holds the actual number of variable in the list
+
+void InsertInBeg(int value){
+    if(n >= MAX){
+        printf("List is full !!!\n");
+        return;
+    }
+    for(int i = n-1; i>=0; i--){
+        list[i+1] = list[i];
+    }
+    list[0] = value;
+    n++;
+    printf("Element inserted !!!\n");
+}
+void DisplayList(){
+    if(n==0){
+        printf("List is empty!!!");
+        return;
+    }
+    for(int i=0;i<n;i++){
+        printf("%d\t",list[i]);
+    }
+    printf("\n");
+}
+void InsertAtEnd(int value){
+    if(n==MAX){
+        printf("List is full!!!");
+        return;
+    }
+    list[n++]=value;
+    printf("Element inserted!!");
+}
+int main(){
+    while(1){
+        printf("1. Insert in beginning\n");
+        printf("2. Insert at end\n");
+        printf("3. Insert at specified postion\n");
+        printf("4. Delete from beginning\n");
+        printf("5. Delete from end \n"); 
+        printf("6. Delete from specified position\n");
+        printf("7. Display list\n");
+        printf("8. Search element in list\n");
+        printf("9. Update list element\n");
+        printf("10. Sort element of list \n");
+        printf("11. Exit\n");
+        int choice, data;
+        printf("Enter choice:");
+        scanf("%d", &choice);
+        switch(choice){
+            case 1:
+                printf("Enter Data: ");
+                scanf("%d", &data);
+                InsertInBeg(data);
+                break;
+            case 2:
+                printf("Enter Data: ");
+                scanf("%d", &data);
+                InsertAtEnd(data);
+                break;
+            case 3:
+
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                DisplayList();
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            default:
+                printf("Invalid choice !!!\n");
+            
+        }
+        printf("\n\n");
+    }
+    return 0;
+}
