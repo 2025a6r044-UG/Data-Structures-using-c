@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 100
+int stack[MAX], top=-1;
+int isempty(){
+    return top==-1; /*returns T or F ie 1 or 0 since 
+                    comparison operator*/                   
+} 
+int isfull(){
+    return top==MAX-1;
+} 
+void push( int value){
+    if(isfull())
+    printf("\nstack overflow");
+    else{ 
+        stack[++top]=value;
+        printf("\npushed %d in the stack\n,value");
+    }
+} 
+
+int pop(){
+    if(isempty()){
+        printf("\nstack underflow\n");
+        return -1;
+    }
+}  
+void show(){
+    if(isempty())
+    printf("\nstack is empty\n");
+    else{
+        printf("stack elements are: \n");
+        for(int i=top;i>=0;i--){
+            printf("%d\n", stack[i]);
+        }
+    }
+}
+
+int peek(){
+    if(isempty()){
+        printf("\nstack underflow\n");
+        return -1;
+    } 
+    else
+    return stack[top];
+}
+int main(){
+    int choice,val,res;
+    while(1){
+        printf("1.push\n");
+        printf("2.pop\n");
+        printf("3.peek\n");
+        printf("4.display\n");
+        printf("5.exit\n");
+        printf("enter choice: ");
+        scanf("%d", &choice); 
+        switch(choice){
+            case 1: 
+            printf("enter value: ");
+            scanf("%d", &val);
+            push(val);
+                break;
+             case 2: 
+             res=pop();
+             if(res!=-1)
+             printf("\npop from stack\n", res);
+                break;
+             case 3: 
+             res=peek();
+             if(res!=-1)
+             printf("\n%d available at top of stack\n", res);
+                break;
+             case 4: 
+             show();
+                break;
+             case 5: 
+                break;
+        }
+        printf("\n");
+    } 
+    return 0;
+}
