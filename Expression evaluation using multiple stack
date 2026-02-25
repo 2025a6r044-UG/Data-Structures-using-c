@@ -1,0 +1,89 @@
+//for single digit 
+#include<stdio.h>
+#include<ctype.h>
+#include<string.h>
+#include<math.h>
+int operand[100];
+char operator[100];
+int top1=-1, top2=-1;
+//doesnt return anything
+void doprocess(){
+    int x=operand[top1--]; //first assign then remove
+    int y=operand[top1--];
+    char op=operator[top2--];
+    int z;
+    switch(op){
+        case '+':
+            z=y+x;
+            break; 
+        case '-':
+            z=y-x;
+            break;
+        case '*':
+            z=y*x;
+            break;
+        case '/':
+            z=y/x;
+            break;
+        case '^':
+            z=(int)pow(y,x);  //Typecasting "int" because pow return type is double
+            break;
+    }
+    operand[++top1]=z;
+}  
+
+int precedence(char op){
+    switch(op){
+        case '+':
+        case '-':
+            return 1; //fallthrough
+        case '*':
+        case '/':
+            return 2;
+        case '^':
+            return 3;
+        default:
+             return 0;
+    }
+} 
+
+int evalInfixExp(char* exp){
+    for(int i=0; i<strlen(exp); i++){
+        char ch=exp[i];
+        if(isdigit(ch)){
+            operand[++top1]= ch-'0';
+        }
+        else if(ch=='+' || ch=='-' || ch=='*' || ch=='/' || ch=='^'){
+            if(top2 == -1)
+                operator[++top2]=ch;
+            else{
+                while(top2 != -1 && precedence(ch)<=precedence(operator[top2])){
+                    doprocess();
+                }
+                operator[++top2]=ch;
+            } 
+        }
+        else if(ch=='('){
+                operator[++top2]=ch;
+        }
+        else if(ch==')'){
+            while(operator[top2] !='('){
+                doprocess();
+            } 
+            top2--;
+        }
+    }
+ 
+while(top2 != -1){
+    doprocess();
+} 
+return operand[top1--];
+} 
+int main(){
+    char exp[100];
+    printf("Enter Infix Expression:");
+    gets(exp);
+    int result= evalInfixExp(exp);
+    printf("Result of expression %s= %d\n", exp, result);
+    return 0;
+}
