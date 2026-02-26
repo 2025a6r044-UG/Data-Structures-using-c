@@ -89,7 +89,7 @@ int evalPrefixExp(char* exp){
         if(isdigit(exp[i])){
             int num=0,p=1;
             while(isdigit(exp[i])){
-                num=(num*10+exp[i]-'0')*p;
+                num=num + (exp[i]-'0')*p;
                 p=p*10;
                 i--;
             }
