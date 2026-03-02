@@ -72,7 +72,7 @@ char* convertPostfixToInfix(char* postfixExp){
     return infix;
 }
 
-char* convertPrefixToInfix(char* postfixExp){
+char* convertPrefixToInfix(char* prefixExp){
     char stack[100][100];
     int len=strlen(postfixExp),top = -1;
     for(int i=len;i>=0;i--){
