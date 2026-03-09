@@ -1,0 +1,75 @@
+#include<stdio.h> 
+#include<stdlib.h>
+#define MAX 100  
+    
+int front = -1,rear = -1;
+
+struct queue{
+    int data;
+    int priority;
+};
+struct queue queue[MAX];
+
+
+int isFull(){
+    return rear=MAX-1;
+} 
+
+int isEmpty(){
+   return front == -1;
+} 
+
+void enqueue(int data){
+    
+} 
+
+int dequeue(){
+    
+}
+
+int peek(){ 
+    
+}
+
+void display(){
+    
+} 
+int main(){
+    int choice,value, res;
+    while(1){
+        printf("1.Enqueue\n");
+        printf("2.Dequeue\n");
+        printf("3.Peek\n");
+        printf("4.Display\n");
+        printf("5.Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch(choice){
+            case 1: 
+            printf("Enter data: ");
+            scanf("%d",&value);
+            enqueue(value);
+                break; 
+            case 2: 
+            value = dequeue();
+            if(value!=-1)
+                printf("%d dequeue from queue\n", value);
+                break;
+            case 3: 
+            value= peek();
+            if(value!= -1)
+                printf("%d dequeue from queue\n",value);
+                break; 
+            case 4: 
+            display();
+                 break; 
+            case 5:
+                exit(0);
+                break;
+            default:
+            printf("Invalid\n");
+        }
+    } 
+    return 0;
+}
