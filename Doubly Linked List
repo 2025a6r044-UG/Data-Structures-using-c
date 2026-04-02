@@ -44,7 +44,7 @@ void displaylist(){
 
 void insertAtAnyPos(int data,int pos){
     struct node* newNode=createNode(data); 
-   if(head==NULL && tail==NULL && pos==0){
+   if(pos==0){
     struct node* newNode=createNode(data);
     head=tail=newNode;
     printf("Node inserted at position %d !!\n",pos);
