@@ -64,17 +64,15 @@ void InsertNodeAtAnyPos(int data, int pos){
         while(i < pos-1){
             temp=temp->next;
             i++;
+            if(temp==head){
+                printf("Invalid position!!\n");
+                return;
+            }
         }
-        if(temp->next == head && i != pos-1)
-            printf("Invalid position!!\n");
-        else if(temp->next == head && i == pos-1){
-            InsertNodeAtEnd(data);
-        }
-        else{
-            struct Node* newNode=createNode(data);
-            newNode->next = temp->next;
-            temp->next = newNode;
-        }
+        struct Node* newNode=createNode(data);
+        newNode->next=temp->next;
+        temp->next=newNode;
+        printf("Node inserted!!\n");
     }
 }
 
