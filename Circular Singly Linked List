@@ -78,18 +78,58 @@ void InsertNodeAtAnyPos(int data, int pos){
 
 
 void deleteNodeFromBeg(){
-   
+    if(head==NULL)
+        printf("List is empty!!\n");
+    else{
+        struct Node* temp=head;
+        while(temp->next != head){
+            temp=temp->next;
+        }
+        temp->next=head->next;
+        head=head->next;
+        printf("Node deleted!!!\n");
+    }
 
 } 
 
 
 void deleteFromEnd(){
-    
+    if(head==NULL)
+        printf("List is empty!!\n");
+    else if(head->next == head){
+        head=NULL;
+        printf("Node deleted!!\n");
+    }
+    else{
+        struct Node* temp=head;
+        while(temp->next->next != head){
+            temp=temp->next;
+        }
+        temp->next=head;
+        printf("Node deleted!!!\n");
+    }
 } 
 
 
 void deleteFromAnyPos(int pos){
-    
+    if(head == NULL)
+        printf("List is empty!!\n");
+    else if(pos==0)
+        deleteNodeFromBeg();
+    else{
+        struct Node* temp=head;
+        int i=0;
+        while(i != pos-1 && temp->next != head){
+            i++;
+            temp=temp->next;
+        }
+        if(temp->next=head)
+            printf("Invalid position!!\n");
+        else{
+            temp->next=temp->next->next;
+            printf("Node deleted!!\n");
+        }
+    }
 }
 
 
@@ -162,11 +202,9 @@ int main(){
                 deleteFromEnd();
                 break;
             case 6:
-                printf("Enter Position:");
-                scanf("%d", &pos);
-                printf("Enter data:");
-                scanf("%d",&data);
-                InsertNodeAtAnyPos(data,pos);
+                printf("Enter position:");
+                scanf("%d",&pos);
+                deleteFromAnyPos(pos);
                 break;
             case 7:
                 DisplayList();
